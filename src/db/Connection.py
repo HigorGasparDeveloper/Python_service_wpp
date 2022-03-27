@@ -7,7 +7,8 @@ class Connection:
     'user':'root',
     'password':'',
     'database':'automacao_whatsapp',
-    'port':'3308'
+    'port':'3308',
+    'charset':"utf8"
   }
   def start_connection(self):
     try:

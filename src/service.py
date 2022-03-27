@@ -5,7 +5,7 @@ from entity.Message import Message
 from functions.functions import setInterval
 from functions.functions import ExecuteSelenium
 class service:
-  interval_seconds = 30
+  interval_seconds = 60 * 15
   def run_service(self):
     selenium = ExecuteSelenium
     selenium.setUrl(selenium,"https://web.whatsapp.com/")
@@ -14,6 +14,7 @@ class service:
     # interval = setInterval()
     # interval.setInterval(self.interval_seconds)
     # interval.setAction(self.action)
+    #interval.setSelenium(selenium)
     # interval.setStopEvent(threading.Event())
     # interval.startThreading()
   def action(self, selenium):

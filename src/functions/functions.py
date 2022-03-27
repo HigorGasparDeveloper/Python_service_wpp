@@ -6,8 +6,12 @@ class setInterval :
   interval = 0
   action = ''
   stopEvent = ''
+  selenium = ''
   def setInterval(self, interval):
     self.interval = interval
+
+  def setSelenium (self, selenium):
+    self.selenium = selenium
 
   def setAction(self, action):
     self.action = action
@@ -23,12 +27,10 @@ class setInterval :
       nextTime=time.time()+self.interval
       while not self.stopEvent.wait(nextTime-time.time()) :
           nextTime+=self.interval
-          self.action()
+          self.action(self.selenium)
 
   def cancel(self) :
       self.stopEvent.set()
-  def test(self):
-    print("test")
 
 class ExecuteSelenium:
   #import webdriver
@@ -50,16 +52,16 @@ class ExecuteSelenium:
   def executeGet(self):
     self.driver.get(self.urlGet)
   def sendMessage(self, msg,numero):
-    while len(self.driver.find_elements(self.By.ID,"side")) < 1:
-      self.time.sleep(1)
-    texto = self.urllib.parse.quote(msg) 
+    #while len(self.driver.find_elements(self.By.ID,"side")) < 1:
+      #self.time.sleep(1)
+    texto = self.urllib.parse.quote(msg)
     #codificando a mensagem
     link = f"https://web.whatsapp.com/send/?phone={numero}&text={texto}" 
     #f significa que o que ta entre chaves é variavel
     self.driver.get(link)
     #se não achou nada, espera um sec
     while len(self.driver.find_elements(self.By.ID,"side")) < 1:
-        self.time.sleep(1)
+      self.time.sleep(1)
     #pressionar enter ao escrever a mensagem e esperar um tempo
     self.time.sleep(3)
     self.driver.find_element(self.By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div[2]').click()

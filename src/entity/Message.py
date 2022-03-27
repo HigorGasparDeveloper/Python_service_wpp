@@ -4,7 +4,7 @@ class Message:
     connect = Connection.start_connection(Connection)
     if connect[0]:
       cursor = Connection.conn.cursor()
-      cursor.execute("SELECT id_message, CONVERT(text_message USING utf8) as text_message,number_message FROM message WHERE status_message = 'N' AND was_deleted = 'N';")
+      cursor.execute("SELECT id_message, text_message,number_message FROM message WHERE status_message = 'N' AND was_deleted = 'N';")
       rows = cursor.fetchall()
       print("Lendo",cursor.rowcount,"linha(s) de dados.")
       for row in rows:
